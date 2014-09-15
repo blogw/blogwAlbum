@@ -1,0 +1,35 @@
+﻿@model MvcAlbum.Models.Album
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div style="font-size:2.5em">
+    <img src="~/Images/album/@Model.Thumbnail" width="50" height="50" style="border:1px solid black"/>
+    @Html.DisplayFor(model => model.Name)
+</div>
+
+<p style="text-align:right">
+    @Html.ActionLink("一覧", "Index") |
+    @Html.ActionLink("新規", "Create","Picture",new { id=Model.AlbumID },null)
+</p>
+
+<hr />
+
+<table style="font-size:1.0em">
+@foreach (var picture in Model.Pictures)
+{
+    <tr>
+        <td style="font-size:1.5em">
+            @picture.Title
+        </td>
+        <td>
+            <img src="~/Images/album/@picture.AlbumID/@picture.Path" width="120" height="120" style="border:1px solid black"/>
+        </td>
+        <td>
+            <a href="../../Picture/Edit/@picture.PictureID">編集</a>
+            <a href="../../Picture/Delete/@picture.PictureID">削除</a>
+        </td>
+    </tr>
+}
+</table>

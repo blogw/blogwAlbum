@@ -1,0 +1,32 @@
+﻿@model IEnumerable<MvcAlbum.Models.Album>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>アルバム一覧</h1>
+
+<p style="text-align:right">
+    @Html.ActionLink("新規", "Create")
+</p>
+
+<hr />
+
+<table style="font-size:1.0em">
+@foreach (var item in Model) {
+    <tr>
+        <td style="font-size:1.5em">
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>            
+            <img src="~/Images/album/@item.Thumbnail" width="80" height="80" style="border:1px solid black"/>
+        </td>
+        <td>
+            @Html.ActionLink("編集", "Edit", new { id=item.AlbumID }) |
+            @Html.ActionLink("詳細", "Details", new { id=item.AlbumID }) |
+            @Html.ActionLink("削除", "Delete", new { id=item.AlbumID })
+        </td>
+    </tr>
+}
+
+</table>

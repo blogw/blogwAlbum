@@ -1,0 +1,45 @@
+﻿@model MvcAlbum.Models.Album
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>アルバム作成</h2>
+<p style="text-align:right">
+    @Html.ActionLink("一覧", "Index")
+</p>
+<hr />
+
+@using (Html.BeginForm("Create", "Album", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Album</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Thumbnail)
+        </div>
+        <div class="editor-field">
+            <input type="file" name="Thumbnail"/>
+            @Html.ValidationMessageFor(model => model.Thumbnail)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
